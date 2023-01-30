@@ -1,0 +1,1 @@
+double dot_product(long n, double *x, double *y);
