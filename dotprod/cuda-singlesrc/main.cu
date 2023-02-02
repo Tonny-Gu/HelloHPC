@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-#include "dotprod.h"
+#include <thrust/device_vector.h>
+#include <thrust/inner_product.h>
 
 #define N_ROUND 100
 
@@ -11,6 +12,12 @@
     fprintf(stderr, "(%s:%d) %s\n", __FILE__, __LINE__, errmsg); \
     exit(1); \
   }
+
+double dot_product(long n, double *x, double *y) {
+  thrust::device_vector<double> d_x(x, x + n);
+  thrust::device_vector<double> d_y(y, y + n);
+  return thrust::inner_product(d_x.begin(), d_x.end(), d_y.begin(), 0.0);
+}
 
 long get_elapsed_useconds(struct timeval start, struct timeval stop) {
   return (stop.tv_sec - start.tv_sec) * 1000000 + stop.tv_usec - start.tv_usec;

@@ -43,7 +43,7 @@ int main() {
     res = dot_product(n_elems, arr_x, arr_y); // Compute Kernel
     gettimeofday(&stop, NULL);
     elapsed_time += get_elapsed_useconds(start, stop);
-    printf("Round: %d Result: %lf, Average Elapsed Time: %ldus\n", i, res, elapsed_time / i);
+    printf("Round: %d, Result: %lf, Average Elapsed Time: %ldus\n", i, res, elapsed_time / i);
   }
   
   printf("\n\nResult: %lf, Average Elapsed Time: %ldus\n", res, elapsed_time / N_ROUND);
